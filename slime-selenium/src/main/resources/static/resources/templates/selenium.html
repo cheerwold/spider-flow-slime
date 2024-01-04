@@ -27,7 +27,7 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">循环变量</label>
 						<div class="layui-input-block">
-							<input type="text" name="loopVariableName" placeholder="请输入循环变量" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopVariableName}}">
+							<input type="text" name="loopIndex" placeholder="请输入循环变量" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.loopIndex}}">
 						</div>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 				</div>
 			</div>
     		<div class="layui-row">
-				<div class="layui-col-md6">
+				<div class="layui-col-md3">
 					<div class="layui-form-item">
 						<label class="layui-form-label">页面加载超时时间</label>
 						<div class="layui-input-block">
@@ -49,7 +49,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="layui-col-md6">
+				<div class="layui-col-md3">
 					<div class="layui-form-item">
 						<label class="layui-form-label">元素获取超时时间</label>
 						<div class="layui-input-block">
@@ -57,6 +57,15 @@
 						</div>
 					</div>
 				</div>
+				<div class="layui-col-md3">
+					<div class="layui-form-item">
+						<label class="layui-form-label">延迟时间</label>
+						<div class="layui-input-block">
+							<input type="text" name="sleep" placeholder="请输入延迟时间" autocomplete="off" class="layui-input input-default" value="{{=d.data.object.sleep}}">
+						</div>
+					</div>
+				</div>
+				<div class="layui-col-md3"></div>
 			</div>
 			<div class="layui-row">
 				<div class="layui-col-md3">
@@ -78,7 +87,7 @@
 				</div>
 			</div>
 			<div class="layui-row">
-				<div class="layui-col-md11">
+				<div class="layui-col-md12">
 					<div class="layui-form-item">
 						<label class="layui-form-label">远程驱动地址</label>
 						<div class="layui-input-block">

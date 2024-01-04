@@ -8,11 +8,14 @@ COPY . .
 
 RUN mvn clean package
 
+
 FROM openjdk:8-jdk-alpine
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+ENV TZ Asia/Shanghai
 
 ENV SLIME_USERNAME slime
 ENV SLIME_PASSWORD slime
-ENV TZ Asia/Shanghai
 
 COPY --from=build /usr/src/app/slime-web/target/slime.jar .
 
@@ -24,4 +27,4 @@ RUN apk add --no-cache tini
 ENTRYPOINT ["/sbin/tini", "--"]
 
 # Run java under Tini
-CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "slime.jar"]
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom","-Dnashorn.args=--language=es6", "-jar", "slime.jar"]

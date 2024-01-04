@@ -52,6 +52,11 @@ public class SeleniumExecutor implements NodeExecutor {
 
     private final ExpressionParser expressionParser;
 
+    /**
+     * 请求的延迟时间
+     */
+    private static final String REQUEST_SLEEP = "sleep";
+
     public SeleniumExecutor(List<DriverProvider> driverProviders, ExpressionParser expressionParser) {
         this.driverProviders = driverProviders;
         this.expressionParser = expressionParser;
@@ -64,6 +69,9 @@ public class SeleniumExecutor implements NodeExecutor {
 
     @Override
     public void execute(SpiderNode node, SpiderContext context, Map<String, Object> variables) {
+        //如果有设置延迟，则执行等待
+        setupSleepTime(node, context);
+
         String proxy = node.getJsonProperty(PROXY);
         String driverType = node.getJsonProperty(DRIVER_TYPE);
         String nodeVariableName = node.getJsonProperty(NODE_VARIABLE_NAME, "resp");
@@ -129,6 +137,7 @@ public class SeleniumExecutor implements NodeExecutor {
             }
             variables.put(nodeVariableName, response);
 
+            log.info("请求成功 url：{}", url);
         } catch (Exception e) {
             log.error("请求出错", e);
             if (driver != null) {
@@ -154,5 +163,23 @@ public class SeleniumExecutor implements NodeExecutor {
     @Override
     public String supportType() {
         return "selenium";
+    }
+
+    /**
+     * 设置延迟时间
+     * @param node    节点
+     * @param context 执行上下文
+     */
+    private void setupSleepTime(SpiderNode node, SpiderContext context) {
+        try {
+            String sleep = node.getJsonProperty(REQUEST_SLEEP);
+            long sleepTime = NumberUtils.toLong(sleep, 0L);
+            if(sleepTime > 0) {
+                Thread.sleep(sleepTime);
+                log.debug("设置延迟时间：{} ms", sleepTime);
+            }
+        } catch (Throwable t) {
+            log.error("设置延迟时间失败", t);
+        }
     }
 }

@@ -70,4 +70,22 @@ public class ListFunctionExecutor implements FunctionExecutor {
         return result;
     }
 
+    @Comment("获取list第一个元素")
+    @Example("${list.first(listVar)}")
+    public static Object first(List<Object> list) {
+        if (list == null || list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+
+    @Comment("获取list第一个元素")
+    @Example("${list.firstOrDefault(listVar)}")
+    public static Object first(List<Object> list, Object defaultValue) {
+        if (list == null || list.isEmpty()) {
+            return defaultValue;
+        }
+        return list.get(0);
+    }
+
 }

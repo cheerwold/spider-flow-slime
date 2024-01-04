@@ -7,4 +7,4 @@ spider:
 # jwt
 jwt:
   # jwt 过期时间
-  period: 1800s
+  period: 86400s
