@@ -1,3 +1,6 @@
+custom:
+  root-dir: ${ROOT_DIR:${user.home}/slime}
+
 spider:
   # 用户名，默认为 slime
   username: ${SLIME_USERNAME:slime}

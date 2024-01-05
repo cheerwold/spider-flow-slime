@@ -4,7 +4,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <springProperty scope="context" name="LOG_LEVEL" source="logging.level.com.github.nekolr.slime" defaultValue="INFO"/>
     <springProperty scope="context" name="WORKSPACE" source="spider.workspace" defaultValue="${user.home}/slime"/>
-    <springProperty scope="context" name="LOG_FILE" source="logging.file" defaultValue="${user.home}/slime/logs/slime.log"/>
+    <springProperty scope="context" name="LOG_FILE" source="logging.file.name" defaultValue="${user.home}/slime/logs/slime.log"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
